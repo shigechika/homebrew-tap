@@ -1,0 +1,136 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update_junos_ops, update_speedtest_z]
+  workflow_dispatch:
+    inputs:
+      package:
+        description: "Package to update (junos-ops or speedtest-z)"
+        required: true
+        type: choice
+        options:
+          - junos-ops
+          - speedtest-z
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Determine package
+        id: pkg
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            case "${{ github.event.action }}" in
+              update_junos_ops)
+                echo "name=junos-ops" >> $GITHUB_OUTPUT
+                echo "formula=junos-ops" >> $GITHUB_OUTPUT
+                echo "class_name=JunosOps" >> $GITHUB_OUTPUT
+                echo "desc=Automated JUNOS package update tool for Juniper devices" >> $GITHUB_OUTPUT
+                echo "homepage=https://github.com/shigechika/junos-ops" >> $GITHUB_OUTPUT
+                echo "test_cmd=junos-ops" >> $GITHUB_OUTPUT
+                ;;
+              update_speedtest_z)
+                echo "name=speedtest-z" >> $GITHUB_OUTPUT
+                echo "formula=speedtest-z" >> $GITHUB_OUTPUT
+                echo "class_name=SpeedtestZ" >> $GITHUB_OUTPUT
+                echo "desc=Automated speed test across 8 major sites with Zabbix integration" >> $GITHUB_OUTPUT
+                echo "homepage=https://github.com/shigechika/speedtest-z" >> $GITHUB_OUTPUT
+                echo "test_cmd=speedtest-z" >> $GITHUB_OUTPUT
+                ;;
+            esac
+          else
+            case "${{ inputs.package }}" in
+              junos-ops)
+                echo "name=junos-ops" >> $GITHUB_OUTPUT
+                echo "formula=junos-ops" >> $GITHUB_OUTPUT
+                echo "class_name=JunosOps" >> $GITHUB_OUTPUT
+                echo "desc=Automated JUNOS package update tool for Juniper devices" >> $GITHUB_OUTPUT
+                echo "homepage=https://github.com/shigechika/junos-ops" >> $GITHUB_OUTPUT
+                echo "test_cmd=junos-ops" >> $GITHUB_OUTPUT
+                ;;
+              speedtest-z)
+                echo "name=speedtest-z" >> $GITHUB_OUTPUT
+                echo "formula=speedtest-z" >> $GITHUB_OUTPUT
+                echo "class_name=SpeedtestZ" >> $GITHUB_OUTPUT
+                echo "desc=Automated speed test across 8 major sites with Zabbix integration" >> $GITHUB_OUTPUT
+                echo "homepage=https://github.com/shigechika/speedtest-z" >> $GITHUB_OUTPUT
+                echo "test_cmd=speedtest-z" >> $GITHUB_OUTPUT
+                ;;
+            esac
+          fi
+
+      - name: Install tools
+        run: |
+          pip install "setuptools<71" "${{ steps.pkg.outputs.name }}" homebrew-pypi-poet
+
+      - name: Generate formula
+        run: |
+          poet -f "${{ steps.pkg.outputs.name }}" > /tmp/formula-raw.rb
+
+      - name: Patch formula metadata
+        run: |
+          python3 << 'PYEOF'
+          import re
+
+          with open("/tmp/formula-raw.rb") as f:
+              content = f.read()
+
+          # Replace desc
+          content = re.sub(
+              r'desc ".*?"',
+              'desc "${{ steps.pkg.outputs.desc }}"',
+              content,
+          )
+
+          # Replace homepage
+          content = re.sub(
+              r'homepage ".*?"',
+              'homepage "${{ steps.pkg.outputs.homepage }}"',
+              content,
+          )
+
+          # Add license after sha256 line
+          if 'license' not in content:
+              content = re.sub(
+                  r'(  sha256 ".*?")',
+                  r'\1\n  license "Apache-2.0"',
+                  content,
+              )
+
+          # Replace depends_on python3 with python@3.12
+          content = content.replace(
+              'depends_on "python3"',
+              'depends_on "python@3.12"',
+          )
+
+          # Replace test block
+          content = re.sub(
+              r'  test do\n.*?\n  end',
+              '  test do\n    assert_match "${{ steps.pkg.outputs.test_cmd }}", shell_output("#{bin}/${{ steps.pkg.outputs.test_cmd }} --version")\n  end',
+              content,
+              flags=re.DOTALL,
+          )
+
+          with open("Formula/${{ steps.pkg.outputs.formula }}.rb", "w") as f:
+              f.write(content)
+          PYEOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "Formula/${{ steps.pkg.outputs.formula }}.rb"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "update: ${{ steps.pkg.outputs.name }} formula"
+            git push
+          fi

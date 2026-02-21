@@ -106,7 +106,7 @@ class JunosOps < Formula
 
   resource "yamlloader" do
     url "https://files.pythonhosted.org/packages/e7/e6/81677e777ca8a3588012f74e215050e3001e39d253076beb1c3306fc9460/yamlloader-1.6.0.tar.gz"
-    sha256 "0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"
+    sha256 "918232976c9910d079ef74b3266ff9ef674228609aa56e67718b3992940a823f"
   end
 
   def install

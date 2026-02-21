@@ -7,7 +7,9 @@ class SpeedtestZ < Formula
   sha256 "2de26d9246ecf2cb26c957cea11580f0458570d8ef474c120d69677d134b550e"
   license "Apache-2.0"
 
+  depends_on "openssl@3"
   depends_on "python@3.12"
+  depends_on "rust" => :build
 
   resource "attrs" do
     url "https://files.pythonhosted.org/packages/6b/5c/685e6633917e101e5dcb62b9dd76946cbb57c26e133bae9e0cd36033c0a9/attrs-25.4.0.tar.gz"

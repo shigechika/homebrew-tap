@@ -7,7 +7,9 @@ class JunosOps < Formula
   sha256 "c7dc503eb95c50b7f9723e8df59c4be8e6f57ab7db5cd8a6dc9adf6506ee75e4"
   license "Apache-2.0"
 
+  depends_on "openssl@3"
   depends_on "python@3.12"
+  depends_on "rust" => :build
 
   resource "bcrypt" do
     url "https://files.pythonhosted.org/packages/d4/36/3329e2518d70ad8e2e5817d5a4cac6bba05a47767ec416c7d020a965f408/bcrypt-5.0.0.tar.gz"

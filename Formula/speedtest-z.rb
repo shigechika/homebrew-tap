@@ -7,6 +7,7 @@ class SpeedtestZ < Formula
   sha256 "2de26d9246ecf2cb26c957cea11580f0458570d8ef474c120d69677d134b550e"
   license "Apache-2.0"
 
+  depends_on "libffi"
   depends_on "openssl@3"
   depends_on "python@3.12"
   depends_on "rust" => :build

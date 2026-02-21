@@ -7,6 +7,8 @@ class JunosOps < Formula
   sha256 "c7dc503eb95c50b7f9723e8df59c4be8e6f57ab7db5cd8a6dc9adf6506ee75e4"
   license "Apache-2.0"
 
+  depends_on "libffi"
+  depends_on "libsodium"
   depends_on "openssl@3"
   depends_on "python@3.12"
   depends_on "rust" => :build

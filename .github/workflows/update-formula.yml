@@ -25,18 +25,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
       - name: Determine package
         id: pkg
         run: |
           if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
             case "${{ github.event.action }}" in
-              update_junos_ops)  echo "name=junos-ops" >> $GITHUB_OUTPUT ;;
-              update_speedtest_z) echo "name=speedtest-z" >> $GITHUB_OUTPUT ;;
+              update_junos_ops)  echo "name=junos-ops" >> "$GITHUB_OUTPUT" ;;
+              update_speedtest_z) echo "name=speedtest-z" >> "$GITHUB_OUTPUT" ;;
             esac
           else
-            echo "name=${{ inputs.package }}" >> $GITHUB_OUTPUT
+            echo "name=${{ inputs.package }}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Install tools
@@ -67,6 +67,10 @@ jobs:
                       'depends_on "libsodium"',
                       'depends_on "openssl@3"',
                   ],
+                  "uses_from_macos": [
+                      'uses_from_macos "libxml2"',
+                      'uses_from_macos "libxslt"',
+                  ],
               },
               "speedtest-z": {
                   "formula": "speedtest-z",
@@ -77,6 +81,7 @@ jobs:
                       'depends_on "libffi"',
                       'depends_on "openssl@3"',
                   ],
+                  "uses_from_macos": [],
               },
           }
 
@@ -101,10 +106,16 @@ jobs:
               )
 
           # depends_on: replace python3 with full dependency block
-          dep_lines = meta["extra_deps"] + [
-              'depends_on "python@3.12"',
+          # build deps first, then regular deps, then uses_from_macos
+          dep_lines = [
               'depends_on "rust" => :build',
+          ] + meta["extra_deps"] + [
+              'depends_on "python@3.13"',
           ]
+          uses_lines = meta.get("uses_from_macos", [])
+          if uses_lines:
+              dep_lines.append("")
+              dep_lines.extend(uses_lines)
           dep_block = "\n  ".join(dep_lines)
           content = content.replace('depends_on "python3"', dep_block)
 

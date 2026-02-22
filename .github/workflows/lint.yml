@@ -1,0 +1,26 @@
+name: Lint Formulae
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Audit formulae
+        run: |
+          for f in Formula/*.rb; do
+            name="$(basename "$f" .rb)"
+            brew audit --strict "shigechika/tap/$name"
+          done
+
+      - name: Style check formulae
+        run: |
+          brew style "shigechika/tap"

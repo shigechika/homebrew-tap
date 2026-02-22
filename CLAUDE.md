@@ -43,6 +43,15 @@ poet -f <package> > /tmp/formula-raw.rb
 
 `workflow_dispatch` による手動トリガーも可能。
 
+### CI lint ワークフロー
+
+`.github/workflows/lint.yml` が Formula の品質チェックを担う:
+
+- `push`（main）と `pull_request` でトリガー
+- `Homebrew/actions/setup-homebrew@master` でリポジトリを tap として自動登録
+- 全 Formula に `brew audit --strict` と `brew style` を実行
+- `brew style` は tap 全体を対象とするため、ワークフロー YAML 内のシェルスクリプトにも shellcheck が適用される
+
 ### パッケージ追加・変更時の注意
 
 - `resource` ブロックの URL と sha256 は PyPI のものを正確に使う

@@ -35,13 +35,23 @@ jobs:
               update_junos_ops)  echo "name=junos-ops" >> "$GITHUB_OUTPUT" ;;
               update_speedtest_z) echo "name=speedtest-z" >> "$GITHUB_OUTPUT" ;;
             esac
+            # client_payload.version から v prefix を除去（例: v0.5.1 → 0.5.1）
+            RAW_VERSION="${{ github.event.client_payload.version }}"
+            echo "version=${RAW_VERSION#v}" >> "$GITHUB_OUTPUT"
           else
             echo "name=${{ inputs.package }}" >> "$GITHUB_OUTPUT"
+            echo "version=" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Install tools
         run: |
-          pip install "setuptools<71" "${{ steps.pkg.outputs.name }}" homebrew-pypi-poet
+          PKG="${{ steps.pkg.outputs.name }}"
+          VERSION="${{ steps.pkg.outputs.version }}"
+          if [ -n "$VERSION" ]; then
+            pip install "setuptools<71" "${PKG}==${VERSION}" homebrew-pypi-poet
+          else
+            pip install "setuptools<71" "${PKG}" homebrew-pypi-poet
+          fi
 
       - name: Generate formula
         run: |

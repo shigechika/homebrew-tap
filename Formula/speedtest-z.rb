@@ -3,8 +3,8 @@ class SpeedtestZ < Formula
 
   desc "Automated speed test across 8 major sites with Zabbix integration"
   homepage "https://github.com/shigechika/speedtest-z"
-  url "https://files.pythonhosted.org/packages/40/34/a35ee80af8f3ad93bcfafd73735326f061be8364ae710b84b38efc377208/speedtest_z-0.6.1.tar.gz"
-  sha256 "c19c04c51805261155907c99b81598f5de5a14b638be781bb40e37c563ee5f29"
+  url "https://files.pythonhosted.org/packages/a0/49/eeaff4e2a4d9c3f7b6cf1f6c3be80e356a85582db7212b9138039d8e908c/speedtest_z-0.6.2.tar.gz"
+  sha256 "443dc47901c4f41869765def2bd64836dfc285e2d9d0b254b28e813ee9ba5e1f"
   license "Apache-2.0"
 
   depends_on "rust" => :build

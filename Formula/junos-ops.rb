@@ -3,8 +3,8 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/66/93/b27f716fac2740d4af14ff3c3ad4923d443ae22ba54680e1e30d54f7986d/junos_ops-0.9.0.tar.gz"
-  sha256 "c7dc503eb95c50b7f9723e8df59c4be8e6f57ab7db5cd8a6dc9adf6506ee75e4"
+  url "https://files.pythonhosted.org/packages/e2/d2/3108c1ee3071207ab9ec929b66b3fad51d9d48c100889975762176c9790f/junos_ops-0.9.1.tar.gz"
+  sha256 "461b5e54efd2bb885d1f9e0dc272ce8f6e12c5241baee701e77fa2cb7c2ec820"
   license "Apache-2.0"
 
   depends_on "rust" => :build
@@ -12,7 +12,7 @@ class JunosOps < Formula
   depends_on "libsodium"
   depends_on "openssl@3"
   depends_on "python@3.13"
-
+  
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"
 

@@ -1,0 +1,151 @@
+name: Build Bottles
+
+on:
+  workflow_dispatch:
+    inputs:
+      formula:
+        description: "Formula to bottle"
+        required: true
+        type: choice
+        options:
+          - junos-ops
+          - speedtest-z
+
+permissions:
+  contents: write
+
+env:
+  HOMEBREW_NO_AUTO_UPDATE: 1
+  HOMEBREW_NO_INSTALL_CLEANUP: 1
+
+jobs:
+  bottle:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, macos-14, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Build bottle
+        run: |
+          brew install --build-bottle "shigechika/tap/${{ inputs.formula }}"
+          VERSION=$(brew info --json=v2 --formula "shigechika/tap/${{ inputs.formula }}" \
+            | jq -r '.formulae[0].versions.stable')
+          brew bottle --json \
+            --root-url="https://github.com/shigechika/homebrew-tap/releases/download/${{ inputs.formula }}-${VERSION}" \
+            "shigechika/tap/${{ inputs.formula }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bottle-${{ matrix.os }}
+          path: |
+            *.bottle.tar.gz
+            *.bottle.json
+
+  publish:
+    needs: bottle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Upload to GitHub Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          FIRST_JSON=$(ls *.bottle.json | head -1)
+          FULL_NAME=$(jq -r 'keys[0]' "$FIRST_JSON")
+          NAME="${FULL_NAME##*/}"
+          VERSION=$(jq -r ".[\"${FULL_NAME}\"].formula.pkg_version" "$FIRST_JSON")
+          TAG="${NAME}-${VERSION}"
+
+          gh release create "${TAG}" \
+            --title "${NAME} ${VERSION}" \
+            --notes "Bottles for ${NAME} ${VERSION}" 2>/dev/null || true
+
+          for f in *.bottle.tar.gz; do
+            gh release upload "${TAG}" "$f" --clobber
+          done
+
+      - name: Update formula with bottle block
+        run: |
+          python3 << 'PYEOF'
+          import json, glob, os, re
+
+          bottles = {}
+          for jf in sorted(glob.glob("*.bottle.json")):
+              with open(jf) as f:
+                  data = json.load(f)
+              for full_name, info in data.items():
+                  name = full_name.split("/")[-1]
+                  bi = info["bottle"]
+                  if name not in bottles:
+                      bottles[name] = {
+                          "root_url": bi["root_url"],
+                          "cellar": bi.get("cellar", ":any"),
+                          "tags": {},
+                      }
+                  for tag, ti in bi["tags"].items():
+                      bottles[name]["tags"][tag] = ti["sha256"]
+
+          for name, info in bottles.items():
+              fp = f"Formula/{name}.rb"
+              if not os.path.exists(fp):
+                  continue
+              with open(fp) as f:
+                  content = f.read()
+
+              lines = ["  bottle do", f'    root_url "{info["root_url"]}"']
+              cellar = info["cellar"]
+              if not cellar.startswith(":"):
+                  cellar = f'"{cellar}"'
+              for tag in sorted(
+                  info["tags"],
+                  key=lambda t: (0 if t.startswith("arm64_") else 1, t),
+              ):
+                  lines.append(
+                      f'    sha256 cellar: {cellar}, {tag}: "{info["tags"][tag]}"'
+                  )
+              lines.append("  end")
+              block = "\n".join(lines)
+
+              if re.search(r"  bottle do\n.*?  end", content, re.DOTALL):
+                  content = re.sub(
+                      r"  bottle do\n.*?  end", block, content, flags=re.DOTALL
+                  )
+              else:
+                  content = re.sub(
+                      r'(  license ".*?")\n',
+                      rf"\1\n\n{block}\n",
+                      content,
+                      count=1,
+                  )
+
+              with open(fp, "w") as f:
+                  f.write(content)
+              print(f"Updated {fp}: {', '.join(sorted(info['tags']))}")
+          PYEOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/
+          if git diff --cached --quiet; then
+            echo "No formula changes"
+          else
+            FIRST_JSON=$(ls *.bottle.json | head -1)
+            FULL_NAME=$(jq -r 'keys[0]' "$FIRST_JSON")
+            NAME="${FULL_NAME##*/}"
+            VERSION=$(jq -r ".[\"${FULL_NAME}\"].formula.pkg_version" "$FIRST_JSON")
+            git commit -m "bottle: ${NAME} ${VERSION}"
+            git push
+          fi

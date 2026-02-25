@@ -3,8 +3,8 @@ class SpeedtestZ < Formula
 
   desc "Automated speed test across 8 major sites with Zabbix integration"
   homepage "https://github.com/shigechika/speedtest-z"
-  url "https://files.pythonhosted.org/packages/f8/59/e824c3c80e659fefc940abdb2c6ac292708feee58f9860b7db73648dc963/speedtest_z-0.8.0.tar.gz"
-  sha256 "967305f25eb49408b195b748676acf3780a49c1a1f93097f7640209c99ec483a"
+  url "https://files.pythonhosted.org/packages/33/90/6d553a4fbe65174a0b65849f431ea3fde8561e59c6d51de9e4837429904e/speedtest_z-0.8.2.tar.gz"
+  sha256 "c7c3db6f2406fb863914456e385b158036226cf71e34ea6d340165f043d89ddf"
   license "Apache-2.0"
 
   depends_on "rust" => :build
@@ -18,8 +18,8 @@ class SpeedtestZ < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/e0/2d/a891ca51311197f6ad14a7ef42e2399f36cf2f9bd44752b3dc4eab60fdc5/certifi-2026.1.4.tar.gz"
-    sha256 "ac726dd470482006e014ad384921ed6438c457018f4b3d204aea4281258b2120"
+    url "https://files.pythonhosted.org/packages/af/2d/7bf41579a8986e348fa033a31cdd0e4121114f6bce2457e8876010b092dd/certifi-2026.2.25.tar.gz"
+    sha256 "e887ab5cee78ea814d3472169153c2d12cd43b14bd03329a39a9c6e2e80bfba7"
   end
 
   resource "cffi" do

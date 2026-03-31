@@ -1,6 +1,6 @@
 # homebrew-tap
 
-Homebrew tap for [junos-ops](https://github.com/shigechika/junos-ops) and [speedtest-z](https://github.com/shigechika/speedtest-z).
+Homebrew tap for [junos-ops](https://github.com/shigechika/junos-ops), [mcp-stdio](https://github.com/shigechika/mcp-stdio), and [speedtest-z](https://github.com/shigechika/speedtest-z).
 
 [Japanese / 日本語](README.ja.md)
 
@@ -16,6 +16,7 @@ brew tap shigechika/tap
 
 ```bash
 brew install junos-ops
+brew install mcp-stdio
 brew install speedtest-z
 ```
 
@@ -23,6 +24,7 @@ Or install directly without adding the tap first:
 
 ```bash
 brew install shigechika/tap/junos-ops
+brew install shigechika/tap/mcp-stdio
 brew install shigechika/tap/speedtest-z
 ```
 
@@ -31,6 +33,7 @@ brew install shigechika/tap/speedtest-z
 | Package | Description | Source |
 |---------|-------------|--------|
 | [junos-ops](https://pypi.org/project/junos-ops/) | Automated JUNOS package update tool for Juniper devices | [GitHub](https://github.com/shigechika/junos-ops) |
+| [mcp-stdio](https://pypi.org/project/mcp-stdio/) | Stdio-to-HTTP relay for MCP servers | [GitHub](https://github.com/shigechika/mcp-stdio) |
 | [speedtest-z](https://pypi.org/project/speedtest-z/) | Automated speed test across 8 major sites with Zabbix integration | [GitHub](https://github.com/shigechika/speedtest-z) |
 
 ## Auto-update

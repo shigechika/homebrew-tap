@@ -2,15 +2,16 @@ name: Update Formula
 
 on:
   repository_dispatch:
-    types: [update_junos_ops, update_speedtest_z]
+    types: [update_junos_ops, update_speedtest_z, update_mcp_stdio]
   workflow_dispatch:
     inputs:
       package:
-        description: "Package to update (junos-ops or speedtest-z)"
+        description: "Package to update"
         required: true
         type: choice
         options:
           - junos-ops
+          - mcp-stdio
           - speedtest-z
 
 permissions:
@@ -33,7 +34,8 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
             case "${{ github.event.action }}" in
-              update_junos_ops)  echo "name=junos-ops" >> "$GITHUB_OUTPUT" ;;
+              update_junos_ops)   echo "name=junos-ops" >> "$GITHUB_OUTPUT" ;;
+              update_mcp_stdio)  echo "name=mcp-stdio" >> "$GITHUB_OUTPUT" ;;
               update_speedtest_z) echo "name=speedtest-z" >> "$GITHUB_OUTPUT" ;;
             esac
             # client_payload.version から v prefix を除去（例: v0.5.1 → 0.5.1）
@@ -72,8 +74,10 @@ jobs:
                   "formula": "junos-ops",
                   "desc": "Automated JUNOS package update tool for Juniper devices",
                   "homepage": "https://github.com/shigechika/junos-ops",
+                  "license": "Apache-2.0",
                   "test_cmd": "junos-ops",
                   "extra_deps": [
+                      'depends_on "rust" => :build',
                       'depends_on "libffi"',
                       'depends_on "libsodium"',
                       'depends_on "openssl@3"',
@@ -83,12 +87,23 @@ jobs:
                       'uses_from_macos "libxslt"',
                   ],
               },
+              "mcp-stdio": {
+                  "formula": "mcp-stdio",
+                  "desc": "Stdio-to-HTTP relay for MCP servers",
+                  "homepage": "https://github.com/shigechika/mcp-stdio",
+                  "license": "MIT",
+                  "test_cmd": "mcp-stdio",
+                  "extra_deps": [],
+                  "uses_from_macos": [],
+              },
               "speedtest-z": {
                   "formula": "speedtest-z",
                   "desc": "Automated speed test across 8 major sites with Zabbix integration",
                   "homepage": "https://github.com/shigechika/speedtest-z",
+                  "license": "Apache-2.0",
                   "test_cmd": "speedtest-z",
                   "extra_deps": [
+                      'depends_on "rust" => :build',
                       'depends_on "libffi"',
                       'depends_on "openssl@3"',
                   ],
@@ -111,16 +126,14 @@ jobs:
           if "license" not in content:
               content = re.sub(
                   r'(  sha256 ".*?")\n\n  depends_on',
-                  r'\1\n  license "Apache-2.0"\n\n  depends_on',
+                  rf'\1\n  license "{meta["license"]}"\n\n  depends_on',
                   content,
                   count=1,
               )
 
           # depends_on: replace python3 with full dependency block
           # build deps first, then regular deps, then uses_from_macos
-          dep_lines = [
-              'depends_on "rust" => :build',
-          ] + meta["extra_deps"] + [
+          dep_lines = meta["extra_deps"] + [
               'depends_on "python@3.13"',
           ]
           uses_lines = meta.get("uses_from_macos", [])

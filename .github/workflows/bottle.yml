@@ -9,6 +9,7 @@ on:
         type: choice
         options:
           - junos-ops
+          - mcp-stdio
           - speedtest-z
 
 permissions:

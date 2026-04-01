@@ -39,7 +39,7 @@ jobs:
             --root-url="https://github.com/shigechika/homebrew-tap/releases/download/${{ inputs.formula }}-${VERSION}" \
             "shigechika/tap/${{ inputs.formula }}"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: bottle-${{ matrix.os }}
           path: |
@@ -50,11 +50,11 @@ jobs:
     needs: bottle
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           merge-multiple: true
 

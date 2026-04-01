@@ -19,7 +19,7 @@ class JunosOps < Formula
   depends_on "libsodium"
   depends_on "openssl@3"
   depends_on "python@3.13"
-  
+
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"
 

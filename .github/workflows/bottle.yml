@@ -75,7 +75,7 @@ jobs:
           # brew bottle generates "name--version" (double dash) but
           # Homebrew url_encode expects "name-version" (single dash) for download
           for f in ./*.bottle*.tar.gz; do
-            urlname="$(echo "$f" | sed 's/--/-/')"
+            urlname="${f/--/-}"
             mv "$f" "$urlname"
             gh release upload "${TAG}" "$urlname" --clobber
           done

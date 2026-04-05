@@ -81,8 +81,38 @@ jobs:
           done
 
       - name: Generate formula
+        # ``poet -f`` queries the PyPI JSON API to fetch the sdist URL.
+        # That API can lag behind ``pip install`` by up to a few
+        # minutes after a release — even though the ``Install tools``
+        # step above already succeeded, poet can still see the
+        # previous version and generate a formula pointing at the
+        # old tarball. Retry until the generated URL contains the
+        # expected version (or until we have no expected version,
+        # in which case the first successful run wins).
         run: |
-          poet -f "${{ steps.pkg.outputs.name }}" > /tmp/formula-raw.rb
+          PKG="${{ steps.pkg.outputs.name }}"
+          VERSION="${{ steps.pkg.outputs.version }}"
+          max_attempts=10
+          delay=30
+          attempt=1
+          while true; do
+            poet -f "$PKG" > /tmp/formula-raw.rb
+            if [ -z "$VERSION" ]; then
+              break  # no explicit version requested; accept whatever poet gave us
+            fi
+            if grep -q "${PKG//-/_}-${VERSION}\.tar\.gz" /tmp/formula-raw.rb; then
+              break
+            fi
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "::error::poet kept generating formula for a version other than $VERSION after $max_attempts attempts"
+              echo "--- generated formula url line ---"
+              grep '^  url ' /tmp/formula-raw.rb || true
+              exit 1
+            fi
+            echo "::warning::poet generated formula does not yet reference ${PKG} ${VERSION} on attempt $attempt/$max_attempts — retrying in ${delay}s (PyPI JSON API propagation)"
+            attempt=$((attempt + 1))
+            sleep "$delay"
+          done
 
       - name: Patch formula metadata
         env:

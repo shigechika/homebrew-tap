@@ -3,23 +3,16 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/ae/03/529cb5056bb87661e8d46b34c7326b644b3e37afbb92b916d278a8f54343/junos_ops-0.12.0.tar.gz"
-  sha256 "8d9c1d91d4216589ad1329b6d3895be5a7d6f7ee8a230c274b7d4d61edf9458a"
+  url "https://files.pythonhosted.org/packages/6b/76/9494a3706a8f5f8a31e6b6e12c083750bf2a0806591d70b81d36894d352b/junos_ops-0.14.0.tar.gz"
+  sha256 "2aa5c097c59e236828ee0c2bcb11f064fb79e30af8e77def951fe5056478309f"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.12.0"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "6617fb53bfa521419a5f2fe908f383101cda65af762026c4fbcf6d02a07c2aa8"
-    sha256 cellar: :any, arm64_sonoma:  "c3fda046456a577974c52bff2ea9db8cffd7e084e502f8adf374f9dfc8f4dcff"
-  end
 
   depends_on "rust" => :build
   depends_on "libffi"
   depends_on "libsodium"
   depends_on "openssl@3"
   depends_on "python@3.13"
-
+  
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"
 
@@ -34,8 +27,8 @@ class JunosOps < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/60/04/ee2a9e8542e4fa2773b81771ff8349ff19cdd56b7258a0cc442639052edb/cryptography-46.0.5.tar.gz"
-    sha256 "abace499247268e3757271b2f1e244b36b06f8515cf27c4d49468fc9eb16e93d"
+    url "https://files.pythonhosted.org/packages/a4/ba/04b1bd4218cbc58dc90ce967106d51582371b898690f3ae0402876cc4f34/cryptography-46.0.6.tar.gz"
+    sha256 "27550628a518c5c6c903d84f637fbecf287f6cb9ced3804838a1295dc1fd0759"
   end
 
   resource "invoke" do

@@ -47,14 +47,38 @@ jobs:
           fi
 
       - name: Install tools
+        # PyPI's JSON index reflects a new release immediately, but the
+        # files.pythonhosted.org CDN that ``pip install`` downloads from
+        # can lag by up to several minutes after publish. When this job
+        # is kicked off by the upstream release workflow's
+        # repository_dispatch (fired within seconds of the PyPI upload),
+        # we routinely hit that window and ``pip install PKG==VERSION``
+        # fails with "No matching distribution found". Retry with a
+        # short backoff to absorb the propagation delay.
         run: |
           PKG="${{ steps.pkg.outputs.name }}"
           VERSION="${{ steps.pkg.outputs.version }}"
           if [ -n "$VERSION" ]; then
-            pip install "setuptools<71" "${PKG}==${VERSION}" homebrew-pypi-poet
+            SPEC="${PKG}==${VERSION}"
           else
-            pip install "setuptools<71" "${PKG}" homebrew-pypi-poet
+            SPEC="${PKG}"
           fi
+
+          max_attempts=10
+          delay=30
+          attempt=1
+          while true; do
+            if pip install "setuptools<71" "$SPEC" homebrew-pypi-poet; then
+              break
+            fi
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "::error::pip install $SPEC failed after $max_attempts attempts"
+              exit 1
+            fi
+            echo "::warning::pip install $SPEC failed on attempt $attempt/$max_attempts — retrying in ${delay}s (PyPI CDN propagation)"
+            attempt=$((attempt + 1))
+            sleep "$delay"
+          done
 
       - name: Generate formula
         run: |

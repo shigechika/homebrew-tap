@@ -186,15 +186,24 @@ jobs:
               )
 
           # depends_on: replace python3 with full dependency block
-          # build deps first, then regular deps, then uses_from_macos
+          # build deps first, then regular deps, then uses_from_macos.
+          # Each non-empty element gets the standard two-space indent;
+          # the blank separator line must be truly empty (not two
+          # spaces) so rubocop's Layout/TrailingWhitespace stays quiet.
           dep_lines = meta["extra_deps"] + [
               'depends_on "python@3.13"',
           ]
           uses_lines = meta.get("uses_from_macos", [])
           if uses_lines:
-              dep_lines.append("")
-              dep_lines.extend(uses_lines)
-          dep_block = "\n  ".join(dep_lines)
+              # Emit "<deps>\n\n  <uses_from_macos...>" — the blank
+              # line has zero trailing whitespace.
+              dep_block = (
+                  "\n  ".join(dep_lines)
+                  + "\n\n  "
+                  + "\n  ".join(uses_lines)
+              )
+          else:
+              dep_block = "\n  ".join(dep_lines)
           content = content.replace('depends_on "python3"', dep_block)
 
           # test block
@@ -205,6 +214,11 @@ jobs:
               content,
               flags=re.DOTALL,
           )
+
+          # Belt-and-braces cleanup: strip any trailing whitespace that
+          # survived the edits above, so rubocop's Layout/TrailingWhitespace
+          # check is always satisfied regardless of future template tweaks.
+          content = "\n".join(line.rstrip() for line in content.splitlines()) + "\n"
 
           with open(f'Formula/{meta["formula"]}.rb', "w") as f:
               f.write(content)

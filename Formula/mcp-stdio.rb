@@ -7,6 +7,13 @@ class McpStdio < Formula
   sha256 "4e45e5f51f8f1b9ea670e848b7b36b2a2ee60f4f424ed4e6d5b60c4c42c428c2"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/shigechika/homebrew-tap/releases/download/mcp-stdio-0.4.0"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "652409cb49de734efbad7419c4a698d6d34dc9c246c287835e2ad1fe0ba51aaf"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "32c6ae41f1dd16ba18cd671173886c8714e24cb66de9b9d87aeffc4a7f1bf410"
+  end
+
   depends_on "python@3.13"
 
   resource "anyio" do

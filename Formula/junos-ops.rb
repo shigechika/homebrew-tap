@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/c9/28/cbc4e00baaa7dbba99473b27e8dab66095d2040a70a361d778ad649f843c/junos_ops-0.14.1.tar.gz"
-  sha256 "89cc8706c879981e09fe787b46cb7e37636efa27c3d22085daef0ac4d1ba4b58"
+  url "https://files.pythonhosted.org/packages/29/ed/12d94801e8488e769aa46eccb58fbb4318a1de43920ea0d1149c0e684f5b/junos_ops-0.15.0.tar.gz"
+  sha256 "00bc6cad56656909715b3571e26c59cfe8bcbb8952b1532a689e31ef8c8860a3"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.14.1"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "1bfc06603709edb09e2112e6acfd12c05c86664d3e40c707fba79bc856a3bf68"
-    sha256 cellar: :any, arm64_sonoma:  "24c4e0a2131362ce8c1214dbba2494ee8c65ab61fb5ce73cc6ab8138ed191fd9"
-  end
 
   depends_on "rust" => :build
   depends_on "libffi"
@@ -34,13 +27,13 @@ class JunosOps < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/a4/ba/04b1bd4218cbc58dc90ce967106d51582371b898690f3ae0402876cc4f34/cryptography-46.0.6.tar.gz"
-    sha256 "27550628a518c5c6c903d84f637fbecf287f6cb9ced3804838a1295dc1fd0759"
+    url "https://files.pythonhosted.org/packages/47/93/ac8f3d5ff04d54bc814e961a43ae5b0b146154c89c61b47bb07557679b18/cryptography-46.0.7.tar.gz"
+    sha256 "e4cfd68c5f3e0bfdad0d38e023239b96a2fe84146481852dffbcca442c245aa5"
   end
 
   resource "invoke" do
-    url "https://files.pythonhosted.org/packages/de/bd/b461d3424a24c80490313fd77feeb666ca4f6a28c7e72713e3d9095719b4/invoke-2.2.1.tar.gz"
-    sha256 "515bf49b4a48932b79b024590348da22f39c4942dff991ad1fb8b8baea1be707"
+    url "https://files.pythonhosted.org/packages/33/f6/227c48c5fe47fa178ccf1fda8f047d16c97ba926567b661e9ce2045c600c/invoke-3.0.3.tar.gz"
+    sha256 "437b6a622223824380bfb4e64f612711a6b648c795f565efc8625af66fb57f0c"
   end
 
   resource "Jinja2" do
@@ -59,8 +52,8 @@ class JunosOps < Formula
   end
 
   resource "lxml" do
-    url "https://files.pythonhosted.org/packages/aa/88/262177de60548e5a2bfc46ad28232c9e9cbde697bd94132aeb80364675cb/lxml-6.0.2.tar.gz"
-    sha256 "cd79f3367bd74b317dda655dc8fcfa304d9eb6e4fb06b7168c5cf27f96e0cd62"
+    url "https://files.pythonhosted.org/packages/ce/08/1217ca4043f55c3c92993b283a7dbfa456a2058d8b57bbb416cc96b6efff/lxml-6.0.4.tar.gz"
+    sha256 "4137516be2a90775f99d8ef80ec0283f8d78b5d8bd4630ff20163b72e7e9abf2"
   end
 
   resource "MarkupSafe" do

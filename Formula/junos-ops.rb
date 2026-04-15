@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/20/da/380561f775e546ea2c9c792da6ce6481aeae63d41a6da3ac569351c1689a/junos_ops-0.16.0.tar.gz"
-  sha256 "f2eda203ce9785926131e54a5f93dfdac527f66bbd6bd5d85550d12d68e9af70"
+  url "https://files.pythonhosted.org/packages/1b/93/cae8e4b1fdcd44859c633b70a74371a387dcae8afdbb005d36014a8465e8/junos_ops-0.16.1.tar.gz"
+  sha256 "e1eff34acf3540ef485c44ce2cd12eba5450a926a0a01f6ee5b78fc20a555896"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.16.0"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "4507e6bc09fc990184dd1d3359d66a34b4da08ff4f7fc439b71ff438904f16a4"
-    sha256 cellar: :any, arm64_sonoma:  "7cea850d9968852e0117ab0329270aa12dbbcdfdca79861d7255d3cc9bfbeaeb"
-  end
 
   depends_on "rust" => :build
   depends_on "libffi"

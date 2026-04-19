@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/b8/cc/10c4f55af9d3bdf795b51465883b3cebd990acca12a256e9b6dcc62f2d2b/junos_ops-0.16.9.tar.gz"
-  sha256 "e610dca96a5419d668e9ea44a2715f71805af024becb310feb3bf94532d08746"
+  url "https://files.pythonhosted.org/packages/9c/c4/b71d1a6b84abe983232eece58acc15fcefba4233ac444a970bb198e41e42/junos_ops-0.16.10.tar.gz"
+  sha256 "e7fcb26fc082b686c0c3424b1f8951bd0782d22637aaef341cf6aebc5d00a1fb"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.16.9"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "c5cbf6bc1f14990b810e277141929305b4d089154932a54ff48de7bafae73bfe"
-    sha256 cellar: :any, arm64_sonoma:  "cf921ac1936468f0ae5f4d0750928fec2ad9153a9776dd384db41128efaabfa0"
-  end
 
   depends_on "rust" => :build
   depends_on "libffi"
@@ -59,8 +52,8 @@ class JunosOps < Formula
   end
 
   resource "lxml" do
-    url "https://files.pythonhosted.org/packages/ce/08/1217ca4043f55c3c92993b283a7dbfa456a2058d8b57bbb416cc96b6efff/lxml-6.0.4.tar.gz"
-    sha256 "4137516be2a90775f99d8ef80ec0283f8d78b5d8bd4630ff20163b72e7e9abf2"
+    url "https://files.pythonhosted.org/packages/28/30/9abc9e34c657c33834eaf6cd02124c61bdf5944d802aa48e69be8da3585d/lxml-6.1.0.tar.gz"
+    sha256 "bfd57d8008c4965709a919c3e9a98f76c2c7cb319086b3d26858250620023b13"
   end
 
   resource "MarkupSafe" do

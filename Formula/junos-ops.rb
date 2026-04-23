@@ -7,6 +7,13 @@ class JunosOps < Formula
   sha256 "a7759e26150661c21a1cd08bae56a765cc6a909c5454062165035bb568d01732"
   license "Apache-2.0"
 
+  bottle do
+    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.18.3"
+    rebuild 1
+    sha256 cellar: :any, arm64_sequoia: "ee586550c7c1683f822a5ba51667d962719c679a5c2ee25f4a131576dde111d3"
+    sha256 cellar: :any, arm64_sonoma:  "a40f168842cae19a5cbb0eccd4fb351add1e7ad19e57c1dfa7b0d530164fd89e"
+  end
+
   depends_on "rust" => :build
   depends_on "libffi"
   depends_on "libsodium"

@@ -14,6 +14,7 @@ class JunosOps < Formula
     sha256 cellar: :any, arm64_sonoma:  "8bde46fb3b8c98003f245b4c78491b2d6e3f012ef973b046474f186afb551260"
   end
 
+  depends_on "pkgconf" => :build
   depends_on "rust" => :build
   depends_on "libffi"
   depends_on "libsodium"

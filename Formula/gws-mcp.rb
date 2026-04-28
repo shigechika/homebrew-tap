@@ -7,22 +7,22 @@ class GwsMcp < Formula
   on_macos do
     on_arm do
       url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.4/gws-aarch64-apple-darwin.tar.gz"
-      sha256 "e9fe06b9311ff95a4fb2c04b308b1d99ee4626c03d1452afd642a817edf277f7"
+      sha256 "cfea8139f11130eb0875524da38343dff749bbe2fae0ec2233b6cf5037e66e0d"
     end
     on_intel do
       url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.4/gws-x86_64-apple-darwin.tar.gz"
-      sha256 "f072ac17e2ffc430aba247ba7a6afe0f25d1a8cd3c89aa34fb6be58d88109567"
+      sha256 "fa1035b47afffc5dc2d1c4fc4d03affbef0f8b8a95dacb6b2e616a7f41d50dda"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.4/gws-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "90d76481c5c083d85bb89a504a31afae41e76effce1f6d2a9f5c31c399fcea9d"
+      sha256 "6a1f7b0249f78c6fad37585ef52813f14bfa1194ded9f8ad1cfc3de7f88780a0"
     end
     on_intel do
       url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.4/gws-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "80a47e568eddbc5d389a93b974b58aa2d29a85cc4a8f53c1eba4f6dc06baca12"
+      sha256 "69c0ef1e1a78714cf6c1e9484ca542290dd717e262609403da06ec9626a3146d"
     end
   end
 

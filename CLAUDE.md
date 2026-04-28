@@ -27,7 +27,9 @@ poet -f <package> > /tmp/formula-raw.rb
 
 ### Formula 構成
 
-`Formula/*.rb` は Ruby で記述された Homebrew Formula。全パッケージ共通で `Language::Python::Virtualenv` を使い、`virtualenv_install_with_resources` でインストールする。各 `resource` ブロックが PyPI 依存パッケージに対応する。
+`Formula/*.rb` は Ruby で記述された Homebrew Formula。Python パッケージ（junos-ops, mcp-stdio, speedtest-z）は `Language::Python::Virtualenv` を使い、`virtualenv_install_with_resources` でインストールする。各 `resource` ブロックが PyPI 依存パッケージに対応する。
+
+`gws-mcp` は Rust バイナリで、上記 Python 系とは**別系統**。pypi-poet・bottle・update-formula の各ワークフローの対象外。
 
 ### 自動更新ワークフロー
 
@@ -82,6 +84,18 @@ gh release upload <package>-<version> <package>-<version>.<tag>.bottle.<rebuild>
 # Formula の bottle ブロックに sha256 行を追加
 ```
 
+### gws-mcp の更新フロー
+
+`gws-mcp` の Formula は `gws-mcp` リポジトリ側の `release.yml` が `HOMEBREW_TAP_TOKEN` を使って GitHub API 経由で直接書き換える。tap 側での対応は不要。
+
+- タグ形式: `fork/v<upstream_version>-mcp.<n>`（例: `fork/v0.22.5-mcp.2`）
+- Formula 内バイナリ名は `gws`
+- 初回リリース前は `Formula/gws-mcp.rb` がソースビルド版（暫定）。リリース時にバイナリ版へ上書きされる
+
+### README 自動同期
+
+`.github/workflows/sync-readme.yml` が毎週月曜に各パッケージの GitHub リポジトリ description を取得し、README.md と README.ja.md のテーブルを更新する。テーブル範囲は `<!-- PACKAGES-TABLE-START -->` / `<!-- PACKAGES-TABLE-END -->` マーカーで囲まれている。
+
 ### CI lint ワークフロー
 
 `.github/workflows/lint.yml` が Formula の品質チェックを担う:
@@ -95,7 +109,9 @@ gh release upload <package>-<version> <package>-<version>.<tag>.bottle.<rebuild>
 
 - `resource` ブロックの URL と sha256 は PyPI のものを正確に使う
 - `poet -f` の出力を元にパッチスクリプトが加工するため、Formula を手動で変更する場合はワークフロー内のパッチロジック（`PACKAGE_META` dict）との整合性を保つこと
-- 新パッケージ追加時はワークフロー内の `PACKAGE_META`、`repository_dispatch` types、`workflow_dispatch` の choice options の3箇所を更新する。`bottle.yml` の `workflow_dispatch` choice options にも追加すること
+- **Python パッケージ**新規追加時は `update-formula.yml` の `PACKAGE_META`・`repository_dispatch` types・`workflow_dispatch` choice options と、`bottle.yml` の choice options の計4箇所を更新する
+- **Rust バイナリ（gws-mcp 方式）**の場合は tap 側ワークフローは変更不要。ソース側 release.yml が Formula を直接更新する
+- `junos-ops` は `bcrypt` resource が Rust ビルドを伴うため `depends_on "pkgconf" => :build` が必要（Homebrew rubocop ルール `FormulaAudit/ResourceRequiresDependencies`）
 
 ## 規約
 

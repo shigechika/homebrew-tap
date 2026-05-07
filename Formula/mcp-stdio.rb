@@ -3,16 +3,9 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/a7/58/e382625e01d49c518b65b02a147d415a017cae730dffa8243665d1521dd9/mcp_stdio-0.10.1.tar.gz"
-  sha256 "6ea5e89b902d1c03b407248b7cbe071fa3f942eccbd08373341bd684fb2e8ef9"
+  url "https://files.pythonhosted.org/packages/0f/10/a92ddaff5efad7e9fdcc695a96b7de16528eae04560426f49a7f487311ea/mcp_stdio-0.11.0.tar.gz"
+  sha256 "f9e473a573aef8466ba0dc1da128b233feb3190f6010e52c660d5ad3cc59564a"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/mcp-stdio-0.10.1"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2b8742989a9cb73170e5796182e15a5adceff4ad6d4fb241f396385bf958ff73"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "db578eb88e4c46715372dba3862a6002e4e8cbc77f71376e07650a230c759a48"
-  end
 
   depends_on "python@3.13"
 

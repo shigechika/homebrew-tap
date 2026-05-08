@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/2b/c4/7e9117db7a9838b566d422b19eb2d19f47a1170a8df9f3ce1e8ca8fab94c/junos_ops-0.18.5.tar.gz"
-  sha256 "164ad246c4e0315a68e16e625ee47e69c2989bc9e6d7b52b39581ccd7d10263c"
+  url "https://files.pythonhosted.org/packages/43/cd/e61d837afc5b9d4b28b1819ba12011ff3d93e2a044a178f3a2dbf751ccfb/junos_ops-0.19.0.tar.gz"
+  sha256 "b410c8a348887c2718445f20fd10c286248778d83bd56de14d799bad679e7179"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.18.5"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "8ddce3eaffdd69da60b602b65f5d29103c58a86688ab019edcb4092e1aef61bc"
-    sha256 cellar: :any, arm64_sonoma:  "8bde46fb3b8c98003f245b4c78491b2d6e3f012ef973b046474f186afb551260"
-  end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
@@ -35,8 +28,8 @@ class JunosOps < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/47/93/ac8f3d5ff04d54bc814e961a43ae5b0b146154c89c61b47bb07557679b18/cryptography-46.0.7.tar.gz"
-    sha256 "e4cfd68c5f3e0bfdad0d38e023239b96a2fe84146481852dffbcca442c245aa5"
+    url "https://files.pythonhosted.org/packages/9f/a9/db8f313fdcd85d767d4973515e1db101f9c71f95fced83233de224673757/cryptography-48.0.0.tar.gz"
+    sha256 "5c3932f4436d1cccb036cb0eaef46e6e2db91035166f1ad6505c3c9d5a635920"
   end
 
   resource "invoke" do

@@ -1,28 +1,28 @@
 class GwsMcp < Formula
   desc "Google Workspace CLI with MCP server support"
   homepage "https://github.com/shigechika/gws-mcp"
-  version "0.22.5-mcp.5"
+  version "0.22.5-mcp.6"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.5/gws-aarch64-apple-darwin.tar.gz"
-      sha256 "b6f44c248e42cb62236eb1291c0a8e4fc7419ca0cbc8dd24eda53f0c932c7a93"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.6/gws-aarch64-apple-darwin.tar.gz"
+      sha256 "4869dac3176b8d6aae79463a78eccd2c0b10c714605a06ab7ff085f5e64dc4d4"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.5/gws-x86_64-apple-darwin.tar.gz"
-      sha256 "4b215194da7f91570ae3e66901569fbb6ce59af9486aaded893770290302658e"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.6/gws-x86_64-apple-darwin.tar.gz"
+      sha256 "595c3691f3c138bcdf612c3148272761adea62f167ef580724fda7685990526d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.5/gws-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "85bc2960ba1cc8a011c7077b33957591a724f859cda74cbf84d69f4b513c7008"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.6/gws-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "aaa91467e4d6e2f163d699d9f72794d56ec93c6a5c18dd6e6c444e02439edbda"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.5/gws-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "570b9b5bdba1dd0be5f98c84ee403921baf9e3518ecde9ff2a3ecab307bdd2f0"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.6/gws-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "644d390bc7acb214eefe5c9c06c6cf268c1845d0a2d60a742406205b265e8a94"
     end
   end
 

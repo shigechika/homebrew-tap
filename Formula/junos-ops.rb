@@ -8,10 +8,10 @@ class JunosOps < Formula
   license "Apache-2.0"
 
   bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.21.0"
+    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.21.1"
     rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "408d2468b09e1d3fa066d5d1a5926451cd15cf32b4cbc11b1feb683c5579871f"
-    sha256 cellar: :any, arm64_sonoma:  "1448bd667938ccfd54f0410211213d930ae3dc35b9ab2c5d8966e70aa0c6f113"
+    sha256 cellar: :any, arm64_sequoia: "08a3726ae94d60a89ce48d5cbd99acc7059d1fdef8bdd1cc982bbc1cdc44fcc2"
+    sha256 cellar: :any, arm64_sonoma:  "fa4f0012f966994665456c726750025170075109a357cfc1f08247826ef0f506"
   end
 
   depends_on "pkgconf" => :build

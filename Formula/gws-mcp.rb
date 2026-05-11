@@ -1,28 +1,28 @@
 class GwsMcp < Formula
   desc "Google Workspace CLI with MCP server support"
   homepage "https://github.com/shigechika/gws-mcp"
-  version "0.22.5-mcp.18"
+  version "0.22.5-mcp.19"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.18/gws-mcp-0.22.5-mcp.18-macos-arm64.tar.gz"
-      sha256 "1a81b7e645c9e653cbde9e0d0e57640d06be2f78397f58b4efde875752b9f3c0"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.19/gws-mcp-0.22.5-mcp.19-macos-arm64.tar.gz"
+      sha256 "671a4e2a3a1a2ed340146ca3a3355d8f42dcaa2afe66e2749318bdf78b8e662b"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.18/gws-mcp-0.22.5-mcp.18-macos-amd64.tar.gz"
-      sha256 "f7f31092743a15019c84b9c06c7e81a5920e81adc61b994f0613e5a593f2831f"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.19/gws-mcp-0.22.5-mcp.19-macos-amd64.tar.gz"
+      sha256 "6f46cfee1c895a957b5f929d80ddc1f626108bf13250c40fa8ecfa3c148a1da4"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.18/gws-mcp-0.22.5-mcp.18-linux-arm64.tar.gz"
-      sha256 "2042df3cd1f6d7cd73133625f7468ae23101257f1320e5b27a05a45c8cec3c57"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.19/gws-mcp-0.22.5-mcp.19-linux-arm64.tar.gz"
+      sha256 "3e8304c80a1d78acf5764ecbad45b7c70b3534b27f222a321c022318f4af3cb2"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.18/gws-mcp-0.22.5-mcp.18-linux-amd64.tar.gz"
-      sha256 "5f7501130f9aa08c0031b2a0e690c9b89e5168c6b8ff97970ad2be6343e62d1e"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.19/gws-mcp-0.22.5-mcp.19-linux-amd64.tar.gz"
+      sha256 "33e8ac8e7b36c66555a5b2bbb2e24cc852ec30805f0a323096a653c3df0cb663"
     end
   end
 

@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/49/9f/c2e44212d52a1e799fc89e3aa7a1ba14acad89f2ec0a0f162ec35f014e48/junos_ops-0.22.1.tar.gz"
-  sha256 "42853877c2baee440fba457c9da4ee928d37f41294a85d9eb763c01addb3b5f1"
+  url "https://files.pythonhosted.org/packages/0f/b8/e2fcda9515a4a4cb18f798c24fe55eeb47e1f4d30d356e240cdc78ac6374/junos_ops-0.23.0.tar.gz"
+  sha256 "62c3e5aea50ede545d72400156c1cb091ece416b14ac256194b992a9d8710bbe"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.22.1"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "e8d6c0ab63612c7caa861ff61af32c9e970eb8d62aca674796057bbbca877509"
-    sha256 cellar: :any, arm64_sonoma:  "a5669be5076e52a82aecdfcd06dd4097b9bbf6c844f62171ecb6b958cdca9f60"
-  end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
@@ -75,8 +68,8 @@ class JunosOps < Formula
   end
 
   resource "paramiko" do
-    url "https://files.pythonhosted.org/packages/1f/e7/81fdcbc7f190cdb058cffc9431587eb289833bdd633e2002455ca9bb13d4/paramiko-4.0.0.tar.gz"
-    sha256 "6a25f07b380cc9c9a88d2b920ad37167ac4667f8d9886ccebd8f90f654b5d69f"
+    url "https://files.pythonhosted.org/packages/62/93/dcc25d52f49022ae6175d15e6bd751f1acc99b98bc61fc55e5155a7be2e7/paramiko-5.0.0.tar.gz"
+    sha256 "36763b5b95c2a0dcfdf1abc48e48156ee425b21efe2f0e787c2dd5a95c0e5e79"
   end
 
   resource "pycparser" do

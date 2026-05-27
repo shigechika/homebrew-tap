@@ -1,28 +1,28 @@
 class GwsMcp < Formula
   desc "Google Workspace CLI with MCP server support"
   homepage "https://github.com/shigechika/gws-mcp"
-  version "0.22.5-mcp.24"
+  version "0.22.5-mcp.25"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.24/gws-mcp-0.22.5-mcp.24-macos-arm64.tar.gz"
-      sha256 "b0559643ec528221d2c9490f29e136f131b6ae6c36371a767d3d19b32053450c"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.25/gws-mcp-0.22.5-mcp.25-macos-arm64.tar.gz"
+      sha256 "c5aca698dd51d4be8cb2ce7efcdd1c9f960023828003abbeeaf3de4b6186fee6"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.24/gws-mcp-0.22.5-mcp.24-macos-amd64.tar.gz"
-      sha256 "f982b0b655502a8d3502469f04d6a0f74ac26ce00b55e62f464e6e0f69c71ed0"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.25/gws-mcp-0.22.5-mcp.25-macos-amd64.tar.gz"
+      sha256 "ea31ba76f2a0057127c5f41cb83ac0c93f68f6e6ca076832148d73c370cf43dc"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.24/gws-mcp-0.22.5-mcp.24-linux-arm64.tar.gz"
-      sha256 "97c5989ca1b096a77a2fbea899cff9f856cce2f0a3ee841e5b41f1c6bd344e17"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.25/gws-mcp-0.22.5-mcp.25-linux-arm64.tar.gz"
+      sha256 "bcbc9741ffd9c156ff1db6fbf7cd6c8e0b8dd068c3bce0635caae2f83c6f23d0"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.24/gws-mcp-0.22.5-mcp.24-linux-amd64.tar.gz"
-      sha256 "e320a8cfb06d32f375ea6098f81739591bb1f175a1c159d559acd883c19c255e"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.25/gws-mcp-0.22.5-mcp.25-linux-amd64.tar.gz"
+      sha256 "18ee084fea5bcf112f78470094f4116e253847640d0b400df10a2033118321e8"
     end
   end
 

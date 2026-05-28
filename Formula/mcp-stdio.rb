@@ -3,16 +3,9 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/99/20/ee1681dffce9e05ec2e270584d84ba18f12b39f616b930ee20349321679a/mcp_stdio-0.13.0.tar.gz"
-  sha256 "ebf4af7c986a4456466382db78fb26d80b4b8b0d01947c0aea2605395afe59cc"
+  url "https://files.pythonhosted.org/packages/8d/22/f8885ead5616cae3f7152794472a84453be0a2b3e0c87620d17791c99c27/mcp_stdio-0.13.1.tar.gz"
+  sha256 "e364959732f8c847e595d007d3505e44dac3f83e14fb1e7ec1c8bb6e949ea77f"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/mcp-stdio-0.13.0"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8e95f303edd42c0b6e29552271378fb54fa284f1e6a7c8e7d7223da98fe2c0c2"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0aa72c10895889f31269c6c37d744f431dec250cc27f3a8ac8124226718eabf8"
-  end
 
   depends_on "python@3.13"
 
@@ -22,8 +15,8 @@ class McpStdio < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/25/ee/6caf7a40c36a1220410afe15a1cc64993a1f864871f698c0f93acb72842a/certifi-2026.4.22.tar.gz"
-    sha256 "8d455352a37b71bf76a79caa83a3d6c25afee4a385d632127b6afb3963f1c580"
+    url "https://files.pythonhosted.org/packages/f3/ce/ee2ecad540810a79593028e88299baeae54d346cc7a0d94b6199988b89b1/certifi-2026.5.20.tar.gz"
+    sha256 "69dea482ab64caa7b9f6aba1c6bf48bb6a5448d1c0f1b17ab42ad8c763a5344d"
   end
 
   resource "h11" do
@@ -42,8 +35,8 @@ class McpStdio < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/ce/cc/762dfb036166873f0059f3b7de4565e1b5bc3d6f28a414c13da27e442f99/idna-3.13.tar.gz"
-    sha256 "585ea8fe5d69b9181ec1afba340451fba6ba764af97026f92a91d4eef164a242"
+    url "https://files.pythonhosted.org/packages/b9/28/99c51f664567218d824af024c0251650fb27e4ca066df188dab0769c5b91/idna-3.17.tar.gz"
+    sha256 "5eb0cb53bc467c12eadcf6de83163ad8527cec9416f44b9b61b19caedad2b87f"
   end
 
   def install

@@ -24,6 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # The bot pushes here with the default GITHUB_TOKEN, and GitHub's
+      # recursion guard means such pushes do NOT trigger lint.yml's `push`
+      # event. So lint never runs on the generated formula. Set Homebrew up
+      # so we can run `brew audit`/`brew style` inline before pushing instead.
+      - uses: Homebrew/actions/setup-homebrew@main
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -225,8 +231,10 @@ jobs:
               f.write(content)
           PYEOF
 
-      - name: Commit and push
+      - name: Commit formula
         id: commit
+        env:
+          PKG: ${{ steps.pkg.outputs.name }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -235,10 +243,26 @@ jobs:
             echo "No changes to commit"
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            git commit -m "update: ${{ steps.pkg.outputs.name }} formula"
-            git push
+            git commit -m "update: ${PKG} formula"
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # Gate the push on brew audit/style. lint.yml does not run on this
+      # bot push (GITHUB_TOKEN recursion guard), so without this gate a
+      # malformed generated formula would land on main and only fail later
+      # at the bottle build. Running the checks after the local commit but
+      # before the push means a failure aborts the job with nothing pushed.
+      - name: Audit and style-check formula
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          PKG: ${{ steps.pkg.outputs.name }}
+        run: |
+          brew style "shigechika/tap/${PKG}"
+          brew audit --strict "shigechika/tap/${PKG}"
+
+      - name: Push
+        if: steps.commit.outputs.changed == 'true'
+        run: git push
 
       - name: Trigger bottle build
         if: steps.commit.outputs.changed == 'true'

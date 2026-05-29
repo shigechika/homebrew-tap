@@ -103,5 +103,18 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "docs: sync package descriptions from GitHub"
-            git push
+            # Push with rebase-retry — see update-formula.yml. This job
+            # only touches README files, so a rebase onto a concurrent
+            # formula push applies cleanly.
+            n=0
+            until git push; do
+              n=$((n + 1))
+              if [ "$n" -ge 5 ]; then
+                echo "::error::push failed after $n attempts"
+                exit 1
+              fi
+              echo "::warning::push rejected (attempt $n) — rebasing onto origin/main"
+              git pull --rebase origin main
+              sleep $((n * 3))
+            done
           fi

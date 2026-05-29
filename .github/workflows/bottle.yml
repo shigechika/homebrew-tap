@@ -186,6 +186,21 @@ jobs:
           brew style "shigechika/tap/${PKG}"
           brew audit --strict "shigechika/tap/${PKG}"
 
+      # Push with rebase-retry — see update-formula.yml. The bottle build
+      # takes minutes, during which another package's update-formula can
+      # push to main and make this push non-fast-forward. Different files
+      # (a single Formula/*.rb), so the rebase applies cleanly.
       - name: Push
         if: steps.commit.outputs.changed == 'true'
-        run: git push
+        run: |
+          n=0
+          until git push; do
+            n=$((n + 1))
+            if [ "$n" -ge 5 ]; then
+              echo "::error::push failed after $n attempts"
+              exit 1
+            fi
+            echo "::warning::push rejected (attempt $n) — rebasing onto origin/main"
+            git pull --rebase origin main
+            sleep $((n * 3))
+          done

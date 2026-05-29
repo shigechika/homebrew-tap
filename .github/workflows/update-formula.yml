@@ -260,9 +260,25 @@ jobs:
           brew style "shigechika/tap/${PKG}"
           brew audit --strict "shigechika/tap/${PKG}"
 
+      # Push with rebase-retry. Other concurrent jobs (another package's
+      # update, a bottle publish, or the readme sync) push to the same
+      # main, so a plain push can be rejected as non-fast-forward. Each
+      # job touches different files (this one: a single Formula/*.rb), so
+      # rebasing onto the latest main applies cleanly.
       - name: Push
         if: steps.commit.outputs.changed == 'true'
-        run: git push
+        run: |
+          n=0
+          until git push; do
+            n=$((n + 1))
+            if [ "$n" -ge 5 ]; then
+              echo "::error::push failed after $n attempts"
+              exit 1
+            fi
+            echo "::warning::push rejected (attempt $n) — rebasing onto origin/main"
+            git pull --rebase origin main
+            sleep $((n * 3))
+          done
 
       - name: Trigger bottle build
         if: steps.commit.outputs.changed == 'true'

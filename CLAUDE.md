@@ -41,8 +41,12 @@ poet -f <package> > /tmp/formula-raw.rb
    - `desc`, `homepage`, `license` の設定
    - `python3` 依存を実際の依存ブロック（`libffi`, `openssl@3` 等）に置換
    - `test do` ブロックを `--version` チェックに置換
-4. 変更があれば自動コミット＆プッシュ
-5. bottle ビルドワークフロー（`bottle.yml`）を自動トリガー
+4. 変更があればローカルコミット
+5. **push 前に `brew style` / `brew audit --strict` を実行**（`setup-homebrew` で登録した tap に対して）。失敗すればここで job を中断し、壊れた Formula を main に push しない
+6. チェックを通過したら push
+7. bottle ビルドワークフロー（`bottle.yml`）を自動トリガー
+
+> このインライン audit/style が必要な理由: 自動更新の push は bot のデフォルト `GITHUB_TOKEN` で行われ、GitHub の再帰防止により `lint.yml` の `push` イベントを**発火させない**（後述）。そのため自動更新パッケージでは lint.yml が実質動かず、push 前のこのチェックが唯一の事前ゲートになる。
 
 `workflow_dispatch` による手動トリガーも可能。
 
@@ -53,7 +57,8 @@ poet -f <package> > /tmp/formula-raw.rb
 1. `update-formula.yml` が Formula 更新後に `gh workflow run` で自動トリガー（`workflow_dispatch`）
 2. macOS マトリクス（macos-14: arm64_sonoma, macos-15: arm64_sequoia）で `brew install --build-bottle` → `brew bottle --json` を実行
 3. 生成された bottle を GitHub Releases にアップロード（タグ: `<formula>-<version>`）
-4. bottle JSON から `bottle do ... end` ブロックを生成して Formula に追記・コミット
+4. bottle JSON から `bottle do ... end` ブロックを生成して Formula に追記・ローカルコミット
+5. push 前に `brew style` / `brew audit --strict` を実行（update-formula.yml と同じ理由。bot push では lint.yml が発火しないため）。通過したら push
 
 bottle があるプラットフォームでは `brew install/upgrade` 時にソースビルドが不要になり、数秒でインストールが完了する。
 
@@ -101,9 +106,11 @@ gh release upload <package>-<version> <package>-<version>.<tag>.bottle.<rebuild>
 `.github/workflows/lint.yml` が Formula の品質チェックを担う:
 
 - `push`（main）と `pull_request` でトリガー
-- `Homebrew/actions/setup-homebrew@master` でリポジトリを tap として自動登録
+- `Homebrew/actions/setup-homebrew@main` でリポジトリを tap として自動登録
 - 全 Formula に `brew audit --strict` と `brew style` を実行
 - `brew style` は tap 全体を対象とするため、ワークフロー YAML 内のシェルスクリプトにも shellcheck が適用される
+
+> **重要（自動更新パッケージには効かない）:** `update-formula.yml` / `bottle.yml` の自動コミットは bot のデフォルト `GITHUB_TOKEN` で push されるため、GitHub の workflow 再帰防止により lint.yml の `push` イベントは**発火しない**。実際 lint.yml が `push` で走るのは、別リポジトリの PAT（`HOMEBREW_TAP_TOKEN`）で push される `gws-mcp` の更新と、人間の PR のみ。junos-ops / mcp-stdio / speedtest-z の自動更新コミットは lint.yml の対象外なので、それらは各ワークフロー内の **push 前 `brew style` / `brew audit --strict`** で検証する（上記「自動更新ワークフロー」「Bottle ビルドワークフロー」参照）。
 
 ### パッケージ追加・変更時の注意
 

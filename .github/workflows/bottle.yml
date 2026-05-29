@@ -54,6 +54,11 @@ jobs:
         with:
           ref: main
 
+      # This job pushes the bottle block with the default GITHUB_TOKEN,
+      # which (GitHub's recursion guard) does not trigger lint.yml. Set
+      # Homebrew up so we can audit/style the formula before pushing.
+      - uses: Homebrew/actions/setup-homebrew@main
+
       - uses: actions/download-artifact@v8
         with:
           merge-multiple: true
@@ -151,18 +156,36 @@ jobs:
               print(f"Updated {fp}: {', '.join(sorted(info['tags']))}")
           PYEOF
 
-      - name: Commit and push
+      - name: Commit formula
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add Formula/
           if git diff --cached --quiet; then
             echo "No formula changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             FIRST_JSON="$(find . -maxdepth 1 -name '*.bottle.json' -print -quit)"
             FULL_NAME=$(jq -r 'keys[0]' "$FIRST_JSON")
             NAME="${FULL_NAME##*/}"
             VERSION=$(jq -r ".[\"${FULL_NAME}\"].formula.pkg_version" "$FIRST_JSON")
             git commit -m "bottle: ${NAME} ${VERSION}"
-            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "name=${NAME}" >> "$GITHUB_OUTPUT"
           fi
+
+      # Gate the push on brew audit/style — lint.yml does not run on this
+      # bot push (GITHUB_TOKEN recursion guard), so audit/style here is the
+      # only automated check before main is updated.
+      - name: Audit and style-check formula
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          PKG: ${{ steps.commit.outputs.name }}
+        run: |
+          brew style "shigechika/tap/${PKG}"
+          brew audit --strict "shigechika/tap/${PKG}"
+
+      - name: Push
+        if: steps.commit.outputs.changed == 'true'
+        run: git push

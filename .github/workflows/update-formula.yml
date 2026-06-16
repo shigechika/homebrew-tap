@@ -265,11 +265,15 @@ jobs:
       # main, so a plain push can be rejected as non-fast-forward. Each
       # job touches different files (this one: a single Formula/*.rb), so
       # rebasing onto the latest main applies cleanly.
+      #
+      # Push the target ref explicitly (origin HEAD:main): actions/checkout
+      # leaves the local main without an upstream tracking ref, so a bare
+      # `git push` fails with "current branch main has no upstream branch".
       - name: Push
         if: steps.commit.outputs.changed == 'true'
         run: |
           n=0
-          until git push; do
+          until git push origin HEAD:main; do
             n=$((n + 1))
             if [ "$n" -ge 5 ]; then
               echo "::error::push failed after $n attempts"

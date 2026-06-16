@@ -275,9 +275,21 @@ jobs:
       # Push the target ref explicitly (origin HEAD:main): actions/checkout
       # leaves the local main without an upstream tracking ref, so a bare
       # `git push` fails with "current branch main has no upstream branch".
+      #
+      # Embed the token in the remote URL instead of relying on checkout's
+      # persisted credentials: checkout v5+ stores auth via an
+      # includeIf.gitdir directive bound to the literal workspace path, but
+      # setup-homebrew symlinks this repo into Homebrew's Taps dir, so git
+      # operations resolve a path the includeIf never matches and the auth
+      # is invisible ("could not read Username"). A token in origin's URL is
+      # path-independent and survives the symlink.
       - name: Push
         if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git remote set-url origin \
+            "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           n=0
           until git push origin HEAD:main; do
             n=$((n + 1))

@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/46/c9/9e8b548027de607198ef23c1e78bca1e39a551e9c80de214dc02dd92fdb4/junos_ops-0.23.1.tar.gz"
-  sha256 "6e61afb71d9aa04ae5828f255cd8386c7dedf61a241dd06d6da369ff3f4dbeed"
+  url "https://files.pythonhosted.org/packages/82/e2/b7b642966c036df662b6b690aa2c83298a4f939aa34aaaadb78e9a016efd/junos_ops-0.25.1.tar.gz"
+  sha256 "270a27fc2dc280351be860fc9068581509acfdccf6da9c88c7f4b5a7a5ce5843"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.23.1"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "78892f5ab275623ca2e6ffb14ee382e61db9a8161cd27785ca356b26943d5e28"
-    sha256 cellar: :any, arm64_sonoma:  "2c720db303e1f48f7580ce15b4eafd656cfb0626b3f204378b09a9605a155b92"
-  end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
@@ -35,8 +28,8 @@ class JunosOps < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/9f/a9/db8f313fdcd85d767d4973515e1db101f9c71f95fced83233de224673757/cryptography-48.0.0.tar.gz"
-    sha256 "5c3932f4436d1cccb036cb0eaef46e6e2db91035166f1ad6505c3c9d5a635920"
+    url "https://files.pythonhosted.org/packages/1f/99/d1c90d6041656cc6ee229dc99cd67fd0cd5aec3c5f7d72fffc27cc750054/cryptography-49.0.0.tar.gz"
+    sha256 "f89660a348f4f78a92366240a61404e337586ef7f5909a2fef59ca88ef505493"
   end
 
   resource "invoke" do
@@ -50,8 +43,8 @@ class JunosOps < Formula
   end
 
   resource "junos-eznc" do
-    url "https://files.pythonhosted.org/packages/d1/ab/eb4eb20b6a31a286e07317f8595fc01cc9d4a9f65b2d3ef8001fe2bd844e/junos_eznc-2.8.0.tar.gz"
-    sha256 "be7faf9edf3397f22fdd0ce1a544a77e63d2a8c4bf3cc8b8704ed78786fcb256"
+    url "https://files.pythonhosted.org/packages/0d/5e/d3992f7c754d99c9340efef40ddcfd1dd6e616190db66c499503d36bf0df/junos_eznc-2.8.1.tar.gz"
+    sha256 "253de81cfc7d1a64285890c1aad363cff3c5c3a6cba3b82e7a958db794daeb57"
   end
 
   resource "looseversion" do

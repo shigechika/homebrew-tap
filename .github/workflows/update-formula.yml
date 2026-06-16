@@ -17,6 +17,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
 
 jobs:
   update:
@@ -308,3 +309,35 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh workflow run bottle.yml -f formula="${{ steps.pkg.outputs.name }}"
+
+      # File (or update) an issue when the job fails. repository_dispatch
+      # runs are kicked off by upstream releases and nobody watches them,
+      # so a silent failure can go unnoticed for several releases (which is
+      # exactly how the formulae fell behind in June 2026). Surfacing it as
+      # an issue puts it on the maintainer's notification feed. One open
+      # issue per package: if it already exists we comment instead of
+      # spamming a new one.
+      - name: Open issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PKG: ${{ steps.pkg.outputs.name }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          pkg="${PKG:-unknown}"
+          title="Formula auto-update failing: ${pkg}"
+          existing="$(gh issue list --repo "$REPO" --state open --limit 100 \
+            --json number,title --jq ".[] | select(.title == \"$title\") | .number" | head -1)"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$REPO" \
+              --body "Still failing (trigger: \`${EVENT}\`) — ${RUN_URL}"
+          else
+            # The backticks below are literal Markdown for the issue body,
+            # not command substitution. shellcheck SC2016 flags them anyway.
+            # shellcheck disable=SC2016
+            body="$(printf 'The `Update Formula` workflow failed for **%s** (trigger: `%s`).\n\nRun: %s\n\nThe formula was not updated. Check the run log, fix the cause, then re-run:\n\n```\ngh workflow run update-formula.yml -f package=%s\n```\n\nFiled automatically; reused (commented) on repeat failures, close once a run succeeds.' \
+              "$pkg" "$EVENT" "$RUN_URL" "$pkg")"
+            gh issue create --repo "$REPO" --title "$title" --body "$body"
+          fi

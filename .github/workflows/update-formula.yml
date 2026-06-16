@@ -23,6 +23,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          # checkout v5+ defaults persist-credentials to false; the Push
+          # step below relies on the GITHUB_TOKEN being persisted so the
+          # bot can push the regenerated formula back to main. Restore the
+          # v4 behavior explicitly.
+          persist-credentials: true
 
       # The bot pushes here with the default GITHUB_TOKEN, and GitHub's
       # recursion guard means such pushes do NOT trigger lint.yml's `push`

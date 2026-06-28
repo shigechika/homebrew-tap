@@ -3,27 +3,20 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/6b/31/ed6ef8fabde37980cca1469a216f03a26a28b4051bddc597f4791a4a216a/mcp_stdio-0.14.0.tar.gz"
-  sha256 "4d3ba5017a60263b107724afd11248c8640c0c65be1a316e36118cba64ea6593"
+  url "https://files.pythonhosted.org/packages/08/fc/bae38c92b42248579b29c89ac2254b83382b87476e2d6e4ae4a97962ca5e/mcp_stdio-0.17.0.tar.gz"
+  sha256 "9287c39032fd3f421079cf20eb14686131edf521c26fcbca07c45f3c0b88c218"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/mcp-stdio-0.14.0"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2c525b6292b4bffd12cba4187801c10b63fc073bab20d5ef15bc8fbde4b6b68f"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "018987d83e2b74ac404b4b8bde674f9439a966cd42616e20643a47c9deff1b9a"
-  end
 
   depends_on "python@3.13"
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/19/14/2c5dd9f512b66549ae92767a9c7b330ae88e1932ca57876909410251fe13/anyio-4.13.0.tar.gz"
-    sha256 "334b70e641fd2221c1505b3890c69882fe4a2df910cba14d97019b90b24439dc"
+    url "https://files.pythonhosted.org/packages/3b/72/5562aabb8dd7181e8e860622a38bea08d17842b99ecd4c91f84ac95251b0/anyio-4.14.1.tar.gz"
+    sha256 "8d648a3544c1a700e3ff78615cd679e4c5c3f149904287e73687b2596963629e"
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/f3/ce/ee2ecad540810a79593028e88299baeae54d346cc7a0d94b6199988b89b1/certifi-2026.5.20.tar.gz"
-    sha256 "69dea482ab64caa7b9f6aba1c6bf48bb6a5448d1c0f1b17ab42ad8c763a5344d"
+    url "https://files.pythonhosted.org/packages/c9/c7/424b75da314c1045981bd9777432fad05a9e0c69daa4ed7e308bbaffe405/certifi-2026.6.17.tar.gz"
+    sha256 "024c88eeec92ca068db80f02b8b07c9cef7b9fe261d1d535abfd5abd6f6af432"
   end
 
   resource "h11" do
@@ -42,8 +35,8 @@ class McpStdio < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/b9/28/99c51f664567218d824af024c0251650fb27e4ca066df188dab0769c5b91/idna-3.17.tar.gz"
-    sha256 "5eb0cb53bc467c12eadcf6de83163ad8527cec9416f44b9b61b19caedad2b87f"
+    url "https://files.pythonhosted.org/packages/cd/63/9496c57188a2ee585e0f1db071d75089a11e98aa86eb99d9d7618fc1edce/idna-3.18.tar.gz"
+    sha256 "ffb385a7e039654cef1ab9ef32c6fafe283c0c0467bba1d9029738ce4a14a848"
   end
 
   def install

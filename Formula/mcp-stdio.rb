@@ -3,8 +3,8 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/98/46/ffe563a8b83b17ed79b1af185e24c168229ec903053ef08b4c677c4ea08e/mcp_stdio-0.27.0.tar.gz"
-  sha256 "1171e8bc4fe95d6ab5f19944424385559406f658bd22ca51c9cdf3c3f9bb9cc6"
+  url "https://files.pythonhosted.org/packages/96/34/89bb0ff7163d977484311ac74356eacc6fd03e3072dfdbcc8c083586bbf6/mcp_stdio-0.28.0.tar.gz"
+  sha256 "f9cbf9fb254813cb8b6f8869b8e8700f93bb1541622a613de04d027f7743aa8c"
   license "MIT"
 
   depends_on "python@3.13"

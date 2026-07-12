@@ -23,7 +23,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           # checkout v5+ defaults persist-credentials to false; the Push
           # step below relies on the GITHUB_TOKEN being persisted so the

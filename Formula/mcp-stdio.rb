@@ -3,15 +3,15 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/96/34/89bb0ff7163d977484311ac74356eacc6fd03e3072dfdbcc8c083586bbf6/mcp_stdio-0.28.0.tar.gz"
-  sha256 "f9cbf9fb254813cb8b6f8869b8e8700f93bb1541622a613de04d027f7743aa8c"
+  url "https://files.pythonhosted.org/packages/db/03/503c58eb9fb8dac1ad998264691305e3554802d7e0088fa0a0d62b615b78/mcp_stdio-0.28.1.tar.gz"
+  sha256 "6bf63da3fa331adb0ba5a86dfb7dc4d0c037e3a7d5a9229b0112b53261341d93"
   license "MIT"
 
   depends_on "python@3.13"
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/3b/72/5562aabb8dd7181e8e860622a38bea08d17842b99ecd4c91f84ac95251b0/anyio-4.14.1.tar.gz"
-    sha256 "8d648a3544c1a700e3ff78615cd679e4c5c3f149904287e73687b2596963629e"
+    url "https://files.pythonhosted.org/packages/61/cc/a381afa6efea9f496eff839d4a6a1aed3bfafc7b3ab4b0d1b243a12573dd/anyio-4.14.2.tar.gz"
+    sha256 "cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f"
   end
 
   resource "certifi" do

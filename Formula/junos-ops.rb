@@ -3,8 +3,8 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/22/e3/acbe52bb5d71d0cfd3210803107ef8fc774d1aec2019daa9b1e95bbdc069/junos_ops-0.26.0.tar.gz"
-  sha256 "929652a4376b3be2a82a7905144af60d37c3d81b592175f0525a34861e863098"
+  url "https://files.pythonhosted.org/packages/6c/be/2fb2e738fd16967d26a747960f03aa84f4117716a9ccd08e77af1fe2d6e6/junos_ops-0.26.1.tar.gz"
+  sha256 "fea568dc790d26ac3a8034290ddbfc55e03dcb9d8a09988f6d4cb8c9a87f7efb"
   license "Apache-2.0"
 
   depends_on "pkgconf" => :build
@@ -23,8 +23,8 @@ class JunosOps < Formula
   end
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz"
-    sha256 "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529"
+    url "https://files.pythonhosted.org/packages/57/5f/ff100cae70ebe9d8df1c01a00e510e45d9adb5c1fdda84791b199141de97/cffi-2.1.0.tar.gz"
+    sha256 "efc1cdd798b1aaf39b4610bba7aad28c9bea9b910f25c784ccf9ec1fa719d1f9"
   end
 
   resource "cryptography" do
@@ -43,8 +43,8 @@ class JunosOps < Formula
   end
 
   resource "junos-eznc" do
-    url "https://files.pythonhosted.org/packages/0d/5e/d3992f7c754d99c9340efef40ddcfd1dd6e616190db66c499503d36bf0df/junos_eznc-2.8.1.tar.gz"
-    sha256 "253de81cfc7d1a64285890c1aad363cff3c5c3a6cba3b82e7a958db794daeb57"
+    url "https://files.pythonhosted.org/packages/34/66/aeab71e5844ff25b771c509b19f8c85e0e5d1c34851b52135de3e9609b9c/junos_eznc-2.8.2.tar.gz"
+    sha256 "bb0426e74bce4544405723a9047341ede91b29cd9b61f1be9e633a55c470fffc"
   end
 
   resource "looseversion" do
@@ -98,8 +98,8 @@ class JunosOps < Formula
   end
 
   resource "scp" do
-    url "https://files.pythonhosted.org/packages/d6/1c/d213e1c6651d0bd37636b21b1ba9b895f276e8057f882c9f944931e4f002/scp-0.15.0.tar.gz"
-    sha256 "f1b22e9932123ccf17eebf19e0953c6e9148f589f93d91b872941a696305c83f"
+    url "https://files.pythonhosted.org/packages/7f/e1/34634a89f100fcf4f014aca65621e701c5b9053cec62b6386866e3f015d5/scp-0.16.0.tar.gz"
+    sha256 "1763a4b8ac424ea0c304f58b95a4a4a51d503a834ed77b4e89f1a32b30cbe662"
   end
 
   resource "six" do

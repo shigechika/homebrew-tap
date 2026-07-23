@@ -7,6 +7,13 @@ class SpeedtestZ < Formula
   sha256 "eaa74d9b7183c531c5f60caa1ef578448de4d18110a4df080818f91c423d17c8"
   license "Apache-2.0"
 
+  bottle do
+    root_url "https://github.com/shigechika/homebrew-tap/releases/download/speedtest-z-0.10.3"
+    rebuild 1
+    sha256 cellar: :any, arm64_sequoia: "14c332c274b80eb6ee038ad07e1836d71c0954363868d8d1e72c6531089dc4bb"
+    sha256 cellar: :any, arm64_sonoma:  "0b8daf29548936d4a5699a40225037e440776ac1320c556aeacd6dba8eb1e47b"
+  end
+
   depends_on "rust" => :build
   depends_on "libffi"
   depends_on "openssl@3"

@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/a0/c7/3bac75d50ba507e98ef4a8c2309ef58efd70f14d55b32682a77f5a8a0254/junos_ops-0.26.2.tar.gz"
-  sha256 "aa77a6209cccf913a484cad59a8252f637bd3fe8bd8904945efc4ca5f4a6a1e0"
+  url "https://files.pythonhosted.org/packages/eb/dc/da02d99eb6e40ccac720af399f8714fdceb267e2454be4c41a5ddeb7d80b/junos_ops-0.27.0.tar.gz"
+  sha256 "4064fead6c8acd48ca6138adf387bd10524c70045be42dbca4c51b2c729bc397"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.26.2"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "99bcd778b769a5a7e18d836ae4fe2ed8c4281990dddbc9bc654e35dd3960024e"
-    sha256 cellar: :any, arm64_sonoma:  "db1774e3799587c8c4527507b3344071cad16116bae24b8fd4bde6347d38ffea"
-  end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
@@ -30,13 +23,13 @@ class JunosOps < Formula
   end
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/57/5f/ff100cae70ebe9d8df1c01a00e510e45d9adb5c1fdda84791b199141de97/cffi-2.1.0.tar.gz"
-    sha256 "efc1cdd798b1aaf39b4610bba7aad28c9bea9b910f25c784ccf9ec1fa719d1f9"
+    url "https://files.pythonhosted.org/packages/9e/ef/008a1939e372c06329a3fce4279c02f328488f3526744906eeec3da7ad5f/cffi-2.1.1.tar.gz"
+    sha256 "dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be"
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/1f/99/d1c90d6041656cc6ee229dc99cd67fd0cd5aec3c5f7d72fffc27cc750054/cryptography-49.0.0.tar.gz"
-    sha256 "f89660a348f4f78a92366240a61404e337586ef7f5909a2fef59ca88ef505493"
+    url "https://files.pythonhosted.org/packages/de/41/6cbdcf9142d00fe82836fbb51e503e58088575cf7a0fe1dbff6695bf0840/cryptography-50.0.0.tar.gz"
+    sha256 "eeac2acb5a20ed25e0ad6d1df9891a520b78b404266b6d11778f25d5d691a6c9"
   end
 
   resource "invoke" do
@@ -105,8 +98,8 @@ class JunosOps < Formula
   end
 
   resource "scp" do
-    url "https://files.pythonhosted.org/packages/7f/e1/34634a89f100fcf4f014aca65621e701c5b9053cec62b6386866e3f015d5/scp-0.16.0.tar.gz"
-    sha256 "1763a4b8ac424ea0c304f58b95a4a4a51d503a834ed77b4e89f1a32b30cbe662"
+    url "https://files.pythonhosted.org/packages/f8/35/fcef45d52d76a6dc70778c11eea719ff0ab550594bc51e55e66d28b5f424/scp-0.16.1.tar.gz"
+    sha256 "3f2b260bf9bd4c2b6857f697a1d7e8edc26fa569282b77027e849dfe1e48580a"
   end
 
   resource "six" do

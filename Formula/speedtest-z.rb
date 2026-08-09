@@ -3,16 +3,9 @@ class SpeedtestZ < Formula
 
   desc "Automated speed test across 8 major sites with Zabbix integration"
   homepage "https://github.com/shigechika/speedtest-z"
-  url "https://files.pythonhosted.org/packages/94/d0/82bce5d9ca32266867bfc7b5ad8038382d6d1e2637571ae0e83c37cd67ba/speedtest_z-0.15.0.tar.gz"
-  sha256 "d4764144981476ef0e3cee92f3702ed19bdea623d4a9bf08dd88ae97b71c20dc"
+  url "https://files.pythonhosted.org/packages/89/82/52ad559376a498a93e0d70428e79c004700848e80a5c783eb331edf24481/speedtest_z-0.16.0.tar.gz"
+  sha256 "1237eed96336299e6f0e49c7cd88555f07534fd3313f2ba2c1350dc34963d497"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/speedtest-z-0.15.0"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "89ef916ead2166fc9a753a395b73ab3d3cbcb5e00792936f25d560de63490ea6"
-    sha256 cellar: :any, arm64_sonoma:  "1851713577297e32f7c1e2c2dc3f5233fc8b496b5c0bcd3c7f02597184633d44"
-  end
 
   depends_on "rust" => :build
   depends_on "libffi"

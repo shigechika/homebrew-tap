@@ -1,28 +1,28 @@
 class GwsMcp < Formula
   desc "Google Workspace CLI with MCP server support"
   homepage "https://github.com/shigechika/gws-mcp"
-  version "0.22.5-mcp.31"
+  version "0.22.5-mcp.32"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.31/gws-mcp-0.22.5-mcp.31-macos-arm64.tar.gz"
-      sha256 "b4231678c5c600db214ad1e77808582acaf378817db8cf15e7a2e68a532bcc85"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.32/gws-mcp-0.22.5-mcp.32-macos-arm64.tar.gz"
+      sha256 "846a1ab285197a6c8bb324a69c5ca2aac65e34e58b48c49d5e9a0097de58b88b"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.31/gws-mcp-0.22.5-mcp.31-macos-amd64.tar.gz"
-      sha256 "ef64e53f7099d0af315fa4bdc4c96f2e2236f143d1982c5da11ee27efe5e5ad2"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.32/gws-mcp-0.22.5-mcp.32-macos-amd64.tar.gz"
+      sha256 "c679c10188364ce0c80a37e59da413ddd6358cddac34b8b7857fb74ab837dd56"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.31/gws-mcp-0.22.5-mcp.31-linux-arm64.tar.gz"
-      sha256 "25ce71f7cf628265c2fe9f1acf40257a3d0061a9c90b6b8e7c3babc6faed1d53"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.32/gws-mcp-0.22.5-mcp.32-linux-arm64.tar.gz"
+      sha256 "3553f8d8d96bd7fd2d6d0851a7d8e0efd2997565d0cdcfdb776786dfe3bba0cb"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.31/gws-mcp-0.22.5-mcp.31-linux-amd64.tar.gz"
-      sha256 "1bd0218e373813fb58a309526df0889c3ec3cee5995f692cf9d96683b655ea23"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.32/gws-mcp-0.22.5-mcp.32-linux-amd64.tar.gz"
+      sha256 "53c3be74fb17b4916024b6746984a919a7300902d7f663443d45586f5e717b7a"
     end
   end
 

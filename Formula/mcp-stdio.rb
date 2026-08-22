@@ -3,16 +3,9 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/79/53/c247ba04e07b254f5b1629a5d0dbb3771f17bbc1760c004877bed59a0a51/mcp_stdio-0.42.2.tar.gz"
-  sha256 "11f80e7749f0a0587bc6236b8d2c4e8428c684cc273f9fc5818795f56c998f4d"
+  url "https://files.pythonhosted.org/packages/30/94/f035d70b7af2839389d13511d18a4226949be57007c1c26738078aaa9675/mcp_stdio-0.43.0.tar.gz"
+  sha256 "ecba4e4a9c68124688d547a6b934c3b4401d9e69c138d03ee86f65a205bb9ba4"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/mcp-stdio-0.42.2"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "37ef1084e04541c2ac054a43cca678f302e4b7c2972338b84de8904d5a04da11"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4d0f3aad1de92d176f2ed7498649b2d710a5d72044075cd916068b66ff797087"
-  end
 
   depends_on "python@3.13"
 
@@ -42,8 +35,8 @@ class McpStdio < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/cd/63/9496c57188a2ee585e0f1db071d75089a11e98aa86eb99d9d7618fc1edce/idna-3.18.tar.gz"
-    sha256 "ffb385a7e039654cef1ab9ef32c6fafe283c0c0467bba1d9029738ce4a14a848"
+    url "https://files.pythonhosted.org/packages/5f/f7/abb373e5757eaec4b922b92f97ec8d6d7e057cf06778247604fbc4e7c3f3/idna-3.19.tar.gz"
+    sha256 "5e0811a4383b21dc5838069f801c4fb62113b7447663d2530d2bd6e77b49bf15"
   end
 
   def install

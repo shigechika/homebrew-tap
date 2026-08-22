@@ -1,28 +1,28 @@
 class GwsMcp < Formula
   desc "Google Workspace CLI with MCP server support"
   homepage "https://github.com/shigechika/gws-mcp"
-  version "0.22.5-mcp.33"
+  version "0.22.5-mcp.34"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.33/gws-mcp-0.22.5-mcp.33-macos-arm64.tar.gz"
-      sha256 "dad8bb08e0c9cea59ccad803e75cb3ad5e3f8d241372d4ebfc45cc7a020b25a1"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.34/gws-mcp-0.22.5-mcp.34-macos-arm64.tar.gz"
+      sha256 "fd080d5b6a6fb600bc3bbd810849bb9028b96c438da5593e979b2a533bd968b8"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.33/gws-mcp-0.22.5-mcp.33-macos-amd64.tar.gz"
-      sha256 "751a3160f280b576fa91151c8fc4d22e5884b38d504dab6c572296c40ceb7c30"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.34/gws-mcp-0.22.5-mcp.34-macos-amd64.tar.gz"
+      sha256 "88cb70029782074c377987c99f74e8830f25ab9516914e56690b6880d074e4e3"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.33/gws-mcp-0.22.5-mcp.33-linux-arm64.tar.gz"
-      sha256 "01b2e3222af8c608e6f5ee9163a319d8c7458146c7204de837134615fa2c0b7b"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.34/gws-mcp-0.22.5-mcp.34-linux-arm64.tar.gz"
+      sha256 "796e54bb0edf9b5b40ef5eae7c2463476f84193ae3f111bbeb9279153a880f3f"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.33/gws-mcp-0.22.5-mcp.33-linux-amd64.tar.gz"
-      sha256 "2dd1b45eee33e86bb5d7b12bac920d514b752d5f068b6fcc80ab9f3f84e4dcbf"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.34/gws-mcp-0.22.5-mcp.34-linux-amd64.tar.gz"
+      sha256 "44021d3c01b78530081d632ccf39302731a34793f4ddd0041a1cffb23daa5783"
     end
   end
 

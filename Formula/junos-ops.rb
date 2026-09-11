@@ -3,16 +3,9 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/09/0b/d03efab609538aa043ab765d3d0502f43b1bc1be355b5813e83f8fdc6c76/junos_ops-0.27.2.tar.gz"
-  sha256 "45c94b26720206db7d4a9c3571003c964bcc4addcde2e6542d62ee71e8eba931"
+  url "https://files.pythonhosted.org/packages/f7/e5/350904659a1e85cd53dff1ed5463c04f3d24523fe6af548223c6b8ddf098/junos_ops-0.28.0.tar.gz"
+  sha256 "fb3184f83c357bd7617cd0f268ac0782832ca4e8772499d5a76cffc6d6afe5c9"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/junos-ops-0.27.2"
-    rebuild 1
-    sha256 cellar: :any, arm64_sequoia: "369a752ac71db0c99e67c49f1bbb690deb9425d6adb8d00841ee6a40f89fd5ca"
-    sha256 cellar: :any, arm64_sonoma:  "fc617af748be07be5d4766a82cbac52a27971015586867a4b3628b2fb9613f8c"
-  end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
@@ -35,8 +28,8 @@ class JunosOps < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/de/41/6cbdcf9142d00fe82836fbb51e503e58088575cf7a0fe1dbff6695bf0840/cryptography-50.0.0.tar.gz"
-    sha256 "eeac2acb5a20ed25e0ad6d1df9891a520b78b404266b6d11778f25d5d691a6c9"
+    url "https://files.pythonhosted.org/packages/bb/ad/5d6702db60b1e40b41ef513b6967ff5848f307d50f8449baf1634f5908f1/cryptography-50.0.1.tar.gz"
+    sha256 "5dd9bda1c12b4162f6ff568eeb5e0ff956c28d14406e875cfe8a63a2d414ff20"
   end
 
   resource "invoke" do
@@ -60,8 +53,8 @@ class JunosOps < Formula
   end
 
   resource "lxml" do
-    url "https://files.pythonhosted.org/packages/05/3b/aab6728cae887456f409b4d75e8a01856e4f04bd510de38052a47768b680/lxml-6.1.1.tar.gz"
-    sha256 "ba96ae44888e0185281e937633a743ea90d5a196c6000f82565ebb0580012d40"
+    url "https://files.pythonhosted.org/packages/23/ad/28ecd7cb894d172f3c9c80a075eeeb2017ac62e3632cee05a5f9493547eb/lxml-6.1.3.tar.gz"
+    sha256 "45222d94ddd511536f3b2f7d9deae3b2339b4ce0f075f1ca25703b07cad9dd21"
   end
 
   resource "MarkupSafe" do

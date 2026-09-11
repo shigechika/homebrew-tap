@@ -3,8 +3,8 @@ class JunosOps < Formula
 
   desc "Automated JUNOS package update tool for Juniper devices"
   homepage "https://github.com/shigechika/junos-ops"
-  url "https://files.pythonhosted.org/packages/23/83/5f7367a800928723728d8e9bcb2e342584a53231878b127469875837eded/junos_ops-0.29.0.tar.gz"
-  sha256 "d5141695bfbe6292b27493dd6f09fa7f074dd673fb4b996301c2ca3769039e56"
+  url "https://files.pythonhosted.org/packages/71/0b/0847e425f1ff0292ecff97c3be3b8a6eb94e0ff8093b2638844d49b17f33/junos_ops-0.29.1.tar.gz"
+  sha256 "e6200f74df6de6fed10f333658bc8b2e2fb80a2244f00daa6909e5230a5b715a"
   license "Apache-2.0"
 
   depends_on "pkgconf" => :build

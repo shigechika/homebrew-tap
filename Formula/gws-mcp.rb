@@ -1,28 +1,28 @@
 class GwsMcp < Formula
   desc "Google Workspace CLI with MCP server support"
   homepage "https://github.com/shigechika/gws-mcp"
-  version "0.22.5-mcp.37"
+  version "0.22.5-mcp.38"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.37/gws-mcp-0.22.5-mcp.37-macos-arm64.tar.gz"
-      sha256 "56f81c8d92f8baebba590cbc1dccf33863a2d39743de4fca115bced134ae0ac2"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.38/gws-mcp-0.22.5-mcp.38-macos-arm64.tar.gz"
+      sha256 "0ef030824efeacc85d37c9574569440840b2a9b411a6dc9f7746d3d80693629e"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.37/gws-mcp-0.22.5-mcp.37-macos-amd64.tar.gz"
-      sha256 "89850bd31768151846a3f33509354ff10c35804e3574c3e61156999b0e9a6f86"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.38/gws-mcp-0.22.5-mcp.38-macos-amd64.tar.gz"
+      sha256 "307d0aac4f3f340afa4f11cd55e408b38929a9049630f4f32158be89d3fc7d64"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.37/gws-mcp-0.22.5-mcp.37-linux-arm64.tar.gz"
-      sha256 "5b33d03178367e6dd58f79d6e8edbd95995dd5e5542b7b3f4ebb5d3a7ea2c6eb"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.38/gws-mcp-0.22.5-mcp.38-linux-arm64.tar.gz"
+      sha256 "64db88366fe0e5b5d88c3558a4bd8b7049af59cd084b1fdc92b26269f9588afd"
     end
     on_intel do
-      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.37/gws-mcp-0.22.5-mcp.37-linux-amd64.tar.gz"
-      sha256 "31b535c98f7ad259047137ac69e46ca25bff7f6b9f2ad605ab27ba3ed82940c7"
+      url "https://github.com/shigechika/gws-mcp/releases/download/fork%2Fv0.22.5-mcp.38/gws-mcp-0.22.5-mcp.38-linux-amd64.tar.gz"
+      sha256 "551e0a85fd994a218d9f058b5c5fa7f5b9ab2249bbb3da97b45e800ee8db7361"
     end
   end
 

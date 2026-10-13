@@ -3,22 +3,15 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/df/94/56892ae2b1b7fde5cee167ff6307757d3ffa91d423a8ac1661901cf55926/mcp_stdio-0.43.5.tar.gz"
-  sha256 "a297a539700a61ff8d86bb999268c7f521338e9c1afc8011eb09e8cb53c6d3f1"
+  url "https://files.pythonhosted.org/packages/dd/a5/fd25115941533da303d665d435a124c13c8083468fbcd36dec6cd308a19d/mcp_stdio-0.45.1.tar.gz"
+  sha256 "8f8386b21287539bd4a91be10b5b118ba159aeb8f35376c1ebad40642d5246b1"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/shigechika/homebrew-tap/releases/download/mcp-stdio-0.43.5"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5bafbf2f3a8a3d8ffc2746beccd57c0137c1266eec3c7e5babeb3a21c3a0d193"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0dfff324c5b3b9462e713f2898e8f65f88bb67573e69319c52f47f029bedc092"
-  end
 
   depends_on "python@3.13"
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/61/cc/a381afa6efea9f496eff839d4a6a1aed3bfafc7b3ab4b0d1b243a12573dd/anyio-4.14.2.tar.gz"
-    sha256 "cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f"
+    url "https://files.pythonhosted.org/packages/a9/d2/f4d173e22df740bc37b1db102b386ba719b66e95b0f0d751f556b387e6d2/anyio-4.15.1.tar.gz"
+    sha256 "9f28306018cbd6d329e64a36d58256edff76dd996fe423bc957326e578b82a94"
   end
 
   resource "certifi" do
@@ -42,8 +35,13 @@ class McpStdio < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/5f/f7/abb373e5757eaec4b922b92f97ec8d6d7e057cf06778247604fbc4e7c3f3/idna-3.19.tar.gz"
-    sha256 "5e0811a4383b21dc5838069f801c4fb62113b7447663d2530d2bd6e77b49bf15"
+    url "https://files.pythonhosted.org/packages/f5/08/8eea9d4b8302028f3abb2c0813953f7aec26d33b7a8960ed760e65ff29fa/idna-3.20.tar.gz"
+    sha256 "a7db850025b95ded1eae8a46181a1a6c56c92c96f0e2b005d9ff8dc0210cab44"
+  end
+
+  resource "typing-extensions" do
+    url "https://files.pythonhosted.org/packages/f6/cc/6253133b5bb138fc3306cebfbda2c520f545d36b5be2c7255cc528bb45d6/typing_extensions-4.16.0.tar.gz"
+    sha256 "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"
   end
 
   def install

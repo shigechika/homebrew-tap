@@ -3,8 +3,8 @@ class McpStdio < Formula
 
   desc "Stdio-to-HTTP relay for MCP servers"
   homepage "https://github.com/shigechika/mcp-stdio"
-  url "https://files.pythonhosted.org/packages/dd/a5/fd25115941533da303d665d435a124c13c8083468fbcd36dec6cd308a19d/mcp_stdio-0.45.1.tar.gz"
-  sha256 "8f8386b21287539bd4a91be10b5b118ba159aeb8f35376c1ebad40642d5246b1"
+  url "https://files.pythonhosted.org/packages/b5/7b/0c5b9535c8eba57026ae1eccffd4804031f0e1a510f4cd234a5e17734937/mcp_stdio-0.45.2.tar.gz"
+  sha256 "b45575638764f2ffd1ba88a5df4aab883f71bc7cf0f4f07279da2de739f952e8"
   license "MIT"
 
   depends_on "python@3.13"
@@ -15,8 +15,8 @@ class McpStdio < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/a3/c2/24167ea9858356b47a87a50d39908bfdb72ceeefe0041586e704e5376b3a/certifi-2026.7.22.tar.gz"
-    sha256 "741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"
+    url "https://files.pythonhosted.org/packages/fd/11/b524cbd9bbdaca58608e4cf4053fd463417549e1959fa8d3aa18319f9555/certifi-2026.10.23.tar.gz"
+    sha256 "a9895e6e2758b371e0545e321a3a8fd1fcfd9829ada8824a936dfb16aaaf36cd"
   end
 
   resource "h11" do
